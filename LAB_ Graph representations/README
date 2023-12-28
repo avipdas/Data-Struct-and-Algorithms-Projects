@@ -1,1 +1,28 @@
+11.22 LAB: Graph representations
+Step 1: Inspect Vertex.h, Edge.h, and DirectedGraph.h
+Inspect the Vertex class declaration in the Vertex.h file. Access Vertex.h by clicking on the orange arrow next to main.cpp at the top of the coding window. The Vertex class represents a graph vertex and has a string for the vertex label.
 
+Inspect the Edge class declaration in the Edge.h file. The edge class represents a directed graph edge and has pointers to a from-vertex and a to-vertex.
+
+Inspect the DirectedGraph abstract class declaration in the DirectedGraph.h file. DirectedGraph is an abstract base class for a directed, unweighted graph.
+
+Step 2: Inspect AdjacencyListGraph.h and AdjacencyListVertex.h
+The AdjacencyListGraph class inherits from DirectedGraph and is declared in AdjacencyListGraph.h. The vertices member variable is a vector of AdjacencyListVertex pointers. The vector contains all the graph's vertices.
+
+The AdjacencyListVertex class inherits from Vertex and is declared in the read only AdjacencyListVertex.h file. The adjacent member variable is a vector of pointers to adjacent vertices.
+
+Step 3: Inspect AdjacencyMatrixGraph.h
+The AdjacencyMatrixGraph class inherits from DirectedGraph and is declared in AdjacencyMatrixGraph.h. The vertices member variable is a vector of Vertex pointers. The vector contains all the graph's vertices. The matrixRows member variable is a vector of matrix rows. Each row itself is a vector of bool values. If matrixRows[X][Y] is true, then an edge exists from vertices[X] to vertices[Y].
+
+Indices in vertices correspond to indices in matrixRows. So if vertex "C" exists at index 2 in vertices, then row 2 and column 2 in the matrix correspond to vertex "C".
+
+Step 4: Implement the AdjacencyListGraph class
+Implement the required member functions in AdjacencyListGraph. Each function has a comment indicating the required functionality. The vertices vector must be used to store the graph's vertices and must not be removed. New member functions can be added, if needed, but existing function signatures must not change.
+
+Step 5: Implement the AdjacencyMatrixGraph class
+Implement the required member functions in AdjacencyMatrixGraph. Each function has a comment indicating the required functionality. The vertices and matrixRows vectors must be used to store the graph's vertices and adjacency matrix, respectively. Both must not be removed. New member functions can be added, if needed, but existing function signatures must not change.
+
+Step 6: Test in develop mode, then submit
+File main.cpp contains test cases for each graph operation. The test operations are first run on an AdjacencyListGraph. Then the same test operations are run on an AdjacencyMatrixGraph. Running code in develop mode displays the test results.
+
+After each member function is implemented and all tests pass in develop mode, submit the code. The unit tests run on submitted code are similar, but use different graphs and perform direct verification of the graphs internal data members.
