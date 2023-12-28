@@ -1,1 +1,26 @@
+6.11 LAB: Course gradebook with unordered_map
+Step 1: Inspect the Gradebook abstract base class
+The read-only Gradebook.h file has a declaration for the Gradebook abstract base class. Access Gradebook.h by clicking on the orange arrow next to main.cpp at the top of the coding window.
 
+The Gradebook class stores a collection of entries for a course. Conceptually, a gradebook entry is a (assignment name, student ID, score) triplet. Each assignment name is a string, each student ID an integer, and each score is a double. A score is entered into the gradebook via the SetScore() function.
+
+The Gradebook class has six pure virtual functions that must be implemented in an inheriting class.
+
+Step 2: Add member variables to CourseGradebook class
+The CourseGradebook class inherits from Gradebook and is declared in CourseGradebook.h. Inspect each function that must be implemented. Choose one or more member variables to store gradebook data and add the member variables to the CourseGradebook class. Several options exist, so grading does not analyze the choice of member variables.
+
+Step 3: Implement CourseGradebook's SetScore() and GetScore() functions
+Implement the SetScore() function to enter a single entry into the gradebook. SetScore() has parameters for the assignment name, student ID, and score. How the entry is stored depends on the member variables chosen in step 2.
+
+Implement the GetScore() function to get a single score from the gradebook. GetScore() has parameters for the assignment name and student ID, and returns a double for the corresponding score. NAN is returned if no such entry exists in the gradebook.
+
+Code in main.cpp calls TestGetScoreAndSetScore() to test both functions. Run your program in develop mode and ensure that the test passes before proceeding further.
+
+Step 4: Implement the remaining CourseGradebook functions
+Implement the remaining functions according to the specifications below.
+
+GetAssignmentScores() takes a string for the assignment name and returns an unordered_map that maps a student ID to the student's corresponding score for the assignment. An entry exists in the returned map only if a score has been entered with the SetScore() function. An empty map is returned if no such assignment exists in the grade book.
+GetSortedAssignmentNames() returns a vector with all distinct assignment names, sorted in ascending order.
+GetSortedStudentIDs() returns a vector with all distinct student IDs, sorted in ascending order.
+GetStudentScores() gets all scores that exist in the gradebook for the student whose ID equals the function parameter. Scores are returned as an unordered_map that maps an assignment name to the student's corresponding score for that assignment.
+If needed, implement CourseGradebook's destructor to free any dynamically allocated content stored in the gradebook.
