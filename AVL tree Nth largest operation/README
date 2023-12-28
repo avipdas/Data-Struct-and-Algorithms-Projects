@@ -1,1 +1,46 @@
+8.11 LAB: AVL tree Nth largest operation
+Step 1: Inspect the BSTNode.h and BinarySearchTree.h files
+Inspect the BSTNode class declaration for a binary search tree node in BSTNode.h. Access BSTNode.h by clicking on the orange arrow next to main.cpp at the top of the coding window. The BSTNode class has private member variables for the key, parent pointer, left child pointer, and right child pointer. Accessor functions exist for each.
 
+Inspect the BinarySearchTree class declaration for a binary search tree node in BinarySearchTree.h. The GetNthKey() function is the only pure virtual function that exists.
+
+Step 2: Inspect other files related to the inheritance hierarchy
+Classes AVLNode and AVLTree inherit from BSTNode and BinarySearchTree, respectively. Each class is implemented in a read only header file.
+
+Classes ExtendedAVLNode and ExtendedAVLTree are declared, but implementations are incomplete. Both classes must be implemented in this lab.
+
+Six class names are shown in boxes. White boxes representing read only, completed class implementations. Four white boxes exist: BinarySearchTree, AVLTree, BSTNode, and AVLNode. Yellow boxes represent incomplete class implementations. Two yellow boxes exist: ExtendedAVLTree and ExtendedAVLNode. Arrows between boxes indicate inheritance. ExtendedAVLTree inherits from AVLTree, AVLTree inherits from BinarySearchTree, ExtendedAVLNode inherits from AVLNode, and AVLNode inherits from BSTNode.
+
+Step 3: Understand the purpose of the subtreeKeyCount variable
+The ExtendedAVLNode class inherits from AVLNode and adds one integer member variable, subtreeKeyCount. Each node's subtree key count is the number of keys in the subtree rooted at that node. Ex:
+
+Sample AVL tree with subtree key counts shown outside each node. Root node has key=20 and a subtreeKeyCount=7. Root's left child has key=10 and subtreeKeyCount=2. Root's right child  has key=42 and subtreeKeyCount=4. Node 10's right child has key=19 and subtreeKeyCount=1. Node 42's left child has key=30 and subtreeKeyCount=1. Node 42's right has key=55 and subtreeKeyCount=2. Node 55's right child has key=77 and subtreeKeyCount=1.
+
+ExtendedAVLNode's constructor and GetSubtreeKeyCount() member functions are already implemented and should not be changed. Additional member functions are needed to ensure that subtreeKeyCount remains accurate.
+
+Step 4: Implement ExtendedAVLTree and ExtendedAVLNode
+Each node in an ExtendedAVLTree must have a correct subtreeKeyCount after an insertion or removal operation. Determine which member functions in AVLTree and AVLNode must be overridden in ExtendedAVLTree and ExtendedAVLNode to keep each node's subtreeKeyCount correct. New functions can be added along with overridden functions, if desired.
+
+Hint: Consider an UpdateSubtreeKeyCount() member function for the ExtendedAVLNode class. The function requires each child node's subtreeKeyCount to be correct, and updates the node's subtreeKeyCount appropriately. Overridden functions in both ExtendedAVLNode and ExtendedAVLTree can call a node's UpdateSubtreeKeyCount() function as needed.
+
+Once determinations are made, complete the implementation of both the ExtendedAVLTree and ExtendedAVLNode classes. Do not implement ExtendedAVLTree's GetNthKey() in this step. GetNthKey() requires correct subtree counts at each node.
+
+Step 5: Run tests in develop mode and submit mode
+TreeTestCommand is an abstract base class defined in TreeCommands.h. A TreeTestCommand object is an executable command that operates on a binary search tree. Classes inheriting from TreeTestCommand are also declared in TreeCommands.h:
+
+TreeInsertCommand inserts keys into the tree
+TreeRemoveCommand removes keys from the tree
+TreeVerifyKeysCommand verifies the tree's keys using an inorder traversal
+TreeVerifySubtreeCountsCommand verifies that each node in the tree has the expected subtree key count
+TreeGetNthCommand verifies that GetNthKey() returns an expected value
+Code in main.cpp contains three automated test cases. Each test executes a vector of TreeTestCommand objects in sequence. The third test includes TreeGetNthCommands and will not pass until the completion of Step 6. The first two tests should pass after completion of step 4.
+
+Before proceeding to Step 6, run code in develop mode and ensure that the first two tests in main.cpp pass. Then submit code and ensure that the first two unit tests pass.
+
+Step 6: Implement ExtendedAVLTree's GetNthKey() member function (worst case O(log n))
+GetNthKey() must return the tree's nth-largest key. The parameter n starts at 0 for the smallest key in the tree. Ex: Suppose a tree has keys:
+
+10, 19, 20, 30, 42, 55, 77
+Then GetNthKey(0) returns 10, GetNthKey(1) returns 19, …, GetNthKey(5) returns 55, and GetNthKey(6) returns 77.
+
+Determine an algorithm that uses the subtree key counts so that GetNthKey() operates in worst case O(log n) time.
